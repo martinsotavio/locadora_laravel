@@ -8,4 +8,9 @@ class Cliente extends Model
 {
     // Esta linha avisa o Laravel que é seguro salvar esses campos no banco
     protected $fillable = ['nome', 'cpf', 'telefone'];
+
+    public function locacoes()
+    {
+        return $this->hasMany(Locacao::class);
+    }
 }

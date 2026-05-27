@@ -79,7 +79,7 @@
         <h2 style="margin-top: 0; color: #1f2937;">Cadastrar Novo Cliente</h2>
 
         @if(session('sucesso'))
-            <p class="sucesso">✅ {{ session('sucesso') }}</p>
+            <p class="sucesso">{{ session('sucesso') }}</p>
         @endif
 
         <form action="{{ route('clientes.salvar') }}" method="POST">

@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Clientes - Locadora</title>
+    <title>Lista de Funcionários - Locadora</title>
     <style>
         body { font-family: Arial, sans-serif; margin: 40px; background-color: #f4f4f9; }
-        .container { max-width: 800px; margin: 0 auto; }
+        .container { max-width: 900px; margin: 0 auto; }
         .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
         table { width: 100%; border-collapse: collapse; margin-top: 15px; }
         th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
@@ -24,10 +24,10 @@
         <a href="javascript:history.back()" class="btn-voltar">Voltar para o Dashboard</a>
 
         <div class="card">
-            <h2 style="margin-top: 0; color: #1f2937;">Clientes Cadastrados</h2>
+            <h2 style="margin-top: 0; color: #1f2937;">Funcionários Cadastrados</h2>
 
             @if(session('sucesso'))
-                <p class="sucesso"> {{ session('sucesso') }}</p>
+                <p class="sucesso">{{ session('sucesso') }}</p>
             @endif
 
             <table>
@@ -36,30 +36,37 @@
                         <th>Nome</th>
                         <th>CPF</th>
                         <th>Telefone</th>
+                        <th>E-mail</th>
+                        <th>Cargo</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($clientes as $cliente)
+                    @foreach($funcionarios as $funcionario)
                         <tr>
-                            <td>{{ $cliente->nome }}</td>
-                            <td>{{ $cliente->cpf }}</td>
-                            <td>{{ $cliente->telefone ?? 'Não informado' }}</td>
+                            <td>{{ $funcionario->nome }}</td>
+                            <td>{{ $funcionario->cpf }}</td>
+                            <td>{{ $funcionario->telefone ?? 'Não informado' }}</td>
+                            <td>{{ $funcionario->email ?? 'Não informado' }}</td>
+                            <td>{{ $funcionario->cargo ?? 'Não informado' }}</td>
                             <td>
-                                <a href="{{ route('clientes.editar', $cliente->id) }}" class="btn-editar">Editar</a>
-                                
-                                <form action="{{ route('clientes.deletar', $cliente->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Tem certeza que deseja deletar este cliente?')">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn-deletar">Deletar</button>
-                                </form>
+                                @if($funcionario->cargo === 'gerente')
+                                    <a href="{{ route('funcionarios.editar', $funcionario->id) }}" class="btn-editar">Editar</a>
+                                    <form action="{{ route('funcionarios.deletar', $funcionario->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Tem certeza que deseja deletar este funcionário?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn-deletar">Deletar</button>
+                                    </form>
+                                @else
+                                    <span style="color: #6b7280; font-size: 13px;">Somente listagem</span>
+                                @endif
                             </td>
                         </tr>
                     @endforeach
 
-                    @if($clientes->isEmpty())
+                    @if($funcionarios->isEmpty())
                         <tr>
-                            <td colspan="4" style="text-align: center; color: #6b7280;">Nenhum cliente cadastrado ainda.</td>
+                            <td colspan="6" style="text-align: center; color: #6b7280;">Nenhum funcionário cadastrado ainda.</td>
                         </tr>
                     @endif
                 </tbody>

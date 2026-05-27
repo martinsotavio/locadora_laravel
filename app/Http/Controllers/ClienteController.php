@@ -16,10 +16,10 @@ class ClienteController extends Controller
     // Função para receber os dados do formulário e salvar
     public function salvar(Request $request)
     {
-        // Validação simples para evitar CPFs duplicados e campos vazios
+        // Validação simples para evitar CPFs duplicados e garantir 11 dígitos
         $request->validate([
             'nome' => 'required',
-            'cpf' => 'required|unique:clientes,cpf',
+            'cpf' => 'required|digits:11|unique:clientes,cpf',
         ]);
 
         // Cria o cliente no banco com os dados vindos do formulário
@@ -55,7 +55,7 @@ class ClienteController extends Controller
         // Valida os dados, permitindo que o cliente mantenha o próprio CPF sem dar erro de "duplicado"
         $request->validate([
             'nome' => 'required',
-            'cpf' => 'required|unique:clientes,cpf,' . $id,
+            'cpf' => 'required|digits:11|unique:clientes,cpf,' . $id,
         ]);
 
         $cliente->nome = $request->nome;

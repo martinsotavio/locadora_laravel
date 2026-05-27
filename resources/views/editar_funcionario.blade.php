@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Cliente</title>
+    <title>Editar Funcionário</title>
     <style>
         body { font-family: Arial, sans-serif; margin: 40px; background-color: #f4f4f9; }
         .card { background: white; padding: 20px; border-radius: 8px; max-width: 400px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin: 0 auto; }
@@ -21,19 +21,28 @@
     </div>
 
     <div class="card">
-        <h2 style="margin-top: 0; color: #1f2937;"> Editar Dados do Cliente</h2>
+        <h2 style="margin-top: 0; color: #1f2937;">Editar Dados do Funcionário</h2>
 
-        <form action="{{ route('clientes.atualizar', $cliente->id) }}" method="POST">
+        <form action="{{ route('funcionarios.atualizar', $funcionario->id) }}" method="POST">
             @csrf
-            
+
             <label>Nome:</label>
-            <input type="text" name="nome" value="{{ $cliente->nome }}" required>
+            <input type="text" name="nome" value="{{ $funcionario->nome }}" required>
 
             <label>CPF:</label>
-            <input type="text" name="cpf" value="{{ $cliente->cpf }}" required>
+            <input type="text" name="cpf" value="{{ $funcionario->cpf }}" required>
 
             <label>Telefone:</label>
-            <input type="text" name="telefone" value="{{ $cliente->telefone }}">
+            <input type="text" name="telefone" value="{{ $funcionario->telefone }}">
+
+            <label>E-mail:</label>
+            <input type="email" name="email" value="{{ $funcionario->email }}">
+
+            <label>Cargo:</label>
+            <select name="cargo" required>
+                <option value="gerente" {{ $funcionario->cargo === 'gerente' ? 'selected' : '' }}>Gerente</option>
+                <option value="locador" {{ $funcionario->cargo === 'locador' ? 'selected' : '' }}>Locador</option>
+            </select>
 
             <button type="submit">Salvar Alterações</button>
         </form>
