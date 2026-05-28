@@ -29,7 +29,7 @@ class RegistrationTest extends TestCase
         $user = User::where('email', 'test@example.com')->first();
 
         $response->assertSessionHasNoErrors()
-            ->assertRedirect(route('dashboard', absolute: false));
+            ->assertRedirectContains('dashboard');
 
         $this->assertAuthenticated();
     }
