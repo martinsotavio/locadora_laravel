@@ -55,6 +55,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/locacoes/{id}/editar', [LocacaoController::class, 'editar'])->name('locacoes.editar');
     Route::post('/locacoes/{id}/atualizar', [LocacaoController::class, 'atualizar'])->name('locacoes.atualizar');
     Route::delete('/locacoes/{id}/deletar', [LocacaoController::class, 'deletar'])->name('locacoes.deletar');
+
+    // Carros (CRUD) - same style as other controllers
+    Route::get('/carros', [\App\Http\Controllers\CarroController::class, 'listar'])->name('carros.listar');
+    Route::get('/carros/novo', [\App\Http\Controllers\CarroController::class, 'criar'])->name('carros.criar');
+    Route::post('/carros/salvar', [\App\Http\Controllers\CarroController::class, 'salvar'])->name('carros.salvar');
+    Route::get('/carros/{placa}/editar', [\App\Http\Controllers\CarroController::class, 'editar'])->name('carros.editar');
+    Route::post('/carros/{placa}/atualizar', [\App\Http\Controllers\CarroController::class, 'atualizar'])->name('carros.atualizar');
+    Route::delete('/carros/{placa}/deletar', [\App\Http\Controllers\CarroController::class, 'deletar'])->name('carros.deletar');
 });
 
 require __DIR__.'/settings.php';
