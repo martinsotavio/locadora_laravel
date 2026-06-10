@@ -1,28 +1,11 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Funcionários</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 40px; background-color: #f4f4f9; }
-        .card { background: white; padding: 20px; border-radius: 8px; max-width: 400px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin: 0 auto; }
-        label { font-weight: bold; display: block; margin-top: 10px; color: #374151; }
-        input { width: 100%; padding: 10px; margin: 6px 0 14px 0; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; }
-        button { background-color: #2563eb; color: white; padding: 12px; border: none; border-radius: 4px; width: 100%; cursor: pointer; font-size: 16px; font-weight: bold; margin-top: 10px; }
-        button:hover { background-color: #1d4ed8; }
-        .sucesso { color: green; font-weight: bold; margin-bottom: 15px; padding: 10px; background-color: #dcfce7; border-radius: 4px; }
-        .btn-voltar { display: inline-block; margin-bottom: 20px; color: #4b5563; text-decoration: none; font-size: 14px; font-weight: bold; }
-        .btn-voltar:hover { color: #111827; }
-    </style>
-</head>
-<body>
+@extends('layouts.app')
 
-    <div style="max-width: 400px; margin: 0 auto;">
-        <a href="javascript:history.back()" class="btn-voltar">Voltar para o Dashboard</a>
+@section('content')
+    <div class="container fade-in">
+        <a href="javascript:history.back()" class="btn ghost">Voltar</a>
     </div>
 
-    <div class="card">
+    <div class="card" style="max-width:600px;margin:18px auto">
         <h2 style="margin-top: 0; color: #1f2937;">Cadastrar Novo Funcionário</h2>
 
         @if(session('sucesso'))
@@ -32,27 +15,46 @@
         <form action="{{ route('funcionarios.salvar') }}" method="POST">
             @csrf
             
-            <label>Nome:</label>
-            <input type="text" name="nome" required placeholder="Digite o nome completo">
+            <div class="form-section">
+                <h3>Informações Pessoais</h3>
+                
+                <div class="form-group">
+                    <label>Nome Completo:</label>
+                    <input type="text" name="nome" required placeholder="Digite o nome completo">
+                </div>
 
-            <label>CPF:</label>
-            <input type="text" name="cpf" placeholder="Apenas números" required>
+                <div class="form-group">
+                    <label>CPF:</label>
+                    <input type="text" name="cpf" placeholder="Apenas números" required>
+                </div>
 
-            <label>Telefone:</label>
-            <input type="text" name="telefone" placeholder="(00) 00000-0000">
+                <div class="form-group">
+                    <label>Telefone:</label>
+                    <input type="text" name="telefone" placeholder="(00) 00000-0000">
+                </div>
 
-            <label>E-mail:</label>
-            <input type="email" name="email" placeholder="email@exemplo.com">
+                <div class="form-group">
+                    <label>E-mail:</label>
+                    <input type="email" name="email" placeholder="email@exemplo.com">
+                </div>
+            </div>
 
-            <label>Cargo:</label>
-            <select name="cargo" required>
-                <option value="gerente">Gerente</option>
-                <option value="locador">Locador</option>
-            </select>
+            <div class="form-section">
+                <h3>Informações Profissionais</h3>
+                
+                <div class="form-group">
+                    <label>Cargo:</label>
+                    <select name="cargo" required>
+                        <option value="">Selecione um cargo</option>
+                        <option value="gerente">Gerente</option>
+                        <option value="locador">Locador</option>
+                    </select>
+                </div>
+            </div>
 
-            <button type="submit">Salvar Funcionário</button>
+            <div class="form-actions">
+                <button type="submit">Salvar Funcionário</button>
+            </div>
         </form>
     </div>
-
-</body>
-</html>
+@endsection

@@ -1,0 +1,129 @@
+/* Loca.Ai theme: layout, typography and components */
+:root{
+  --bg:#0f172a; --muted:#6b7280; --card:#ffffff; --accent:#2563eb; --accent-2:#eab308; --success:#16a34a;
+  --max-width:1100px; --radius:10px; --shadow:0 8px 24px rgba(15,23,42,0.08);
+}
+html,body{height:100%;}
+body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial; background:linear-gradient(180deg,#f8fafc 0%, #eef2ff 100%); color:#0f172a; margin:0;}
+.container{max-width:var(--max-width); margin:28px auto; padding:0 20px;}
+
+/* Header */
+.loca-header{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;background:var(--accent);color:#fff;border-radius:0 0 14px 14px;box-shadow:var(--shadow);}
+.loca-brand{display:flex;gap:12px;align-items:center}
+.loca-logo{width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,#fff,#e6f0ff);color:var(--accent);display:flex;align-items:center;justify-content:center;font-weight:800}
+.loca-title{font-weight:800;font-size:18px}
+.loca-sub{font-size:12px;opacity:.9}
+.loca-nav{display:flex;gap:14px}
+.loca-nav a{color:rgba(255,255,255,0.95);text-decoration:none;padding:8px 10px;border-radius:8px;font-weight:600}
+.loca-nav a:hover{background:rgba(255,255,255,0.08)}
+.nav-toggle{display:none}
+.user-menu{display:flex;gap:10px;align-items:center}
+
+/* Footer */
+.loca-footer{margin-top:40px;padding:22px 0;text-align:center;color:var(--muted);font-size:14px}
+
+/* Cards and lists */
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}
+.page-header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}
+.page-title{font-size:20px;font-weight:800;margin:0}
+.actions{display:flex;gap:10px}
+.btn{display:inline-block;padding:10px 14px;border-radius:8px;background:var(--accent);color:#fff;text-decoration:none;font-weight:700}
+.btn.ghost{background:transparent;color:var(--muted);border:1px solid rgba(15,23,42,0.04)}
+.btn.secondary{background:var(--accent-2);color:#111}
+.btn-danger{background:#ef4444}
+
+/* Table styling */
+.table-wrap{overflow:auto}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{padding:12px 14px;text-align:left;border-bottom:1px solid #f1f5f9}
+th{background:#f8fafc;color:#374151;font-weight:700}
+tr:hover td{background:#fbfdff}
+
+/* Grid layout for cards fallback */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.car-card{padding:14px;border-radius:12px;background:linear-gradient(180deg,#fff,#fbfbff);box-shadow:0 6px 18px rgba(12,34,78,0.06);transition:transform .18s ease,box-shadow .18s ease}
+.car-card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(12,34,78,0.08)}
+.car-title{font-weight:800;margin-bottom:6px}
+.muted{color:var(--muted)}
+
+/* Small utilities */
+.flex{display:flex;align-items:center;gap:8px}
+.right{margin-left:auto}
+
+/* Animations */
+.fade-in{opacity:0;transform:translateY(8px);animation:fadeUp .36s ease forwards}
+@keyframes fadeUp{to{opacity:1;transform:none}}
+
+/* Responsive */
+@media (max-width:900px){
+  .loca-nav{display:none}
+  .nav-toggle{display:inline-block;background:transparent;border:none;color:#fff}
+}
+/* Loca.Ai theme for Vite */
+:root{
+  --brand-blue:#2563eb;
+  --brand-teal:#0ea5a9;
+  --brand-dark:#0f172a;
+  --muted:#6b7280;
+  --card-bg:#ffffff;
+  --page-bg:#f8fafc;
+}
+body{
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: var(--page-bg);
+  color: var(--brand-dark);
+  margin:0;
+}
+.loca-header{
+  background: linear-gradient(90deg,var(--brand-blue),var(--brand-teal));
+  color: #fff;
+  padding:14px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+.loca-brand{display:flex;align-items:center;gap:12px}
+.loca-logo{width:44px;height:44px;border-radius:8px;background:#fff;color:var(--brand-blue);display:flex;align-items:center;justify-content:center;font-weight:700}
+.loca-title{font-size:18px;font-weight:700}
+.loca-sub{font-size:12px;opacity:0.9}
+.loca-nav{display:flex;align-items:center;gap:12px}
+.loca-nav a{color:rgba(255,255,255,0.95);text-decoration:none;padding:6px 8px;border-radius:8px}
+.loca-nav a:hover{background:rgba(255,255,255,0.06)}
+.user-menu{display:flex;align-items:center;gap:10px}
+.user-name{color:#fff;font-weight:600}
+.container{max-width:1100px;margin:24px auto;padding:0 18px}
+.card{background:var(--card-bg);padding:20px;border-radius:12px;box-shadow:0 6px 20px rgba(2,6,23,0.06)}
+.btn{display:inline-block;padding:10px 14px;border-radius:8px;background:var(--brand-blue);color:#fff;text-decoration:none;font-weight:600}
+.btn.ghost{background:transparent;color:var(--brand-blue);border:1px solid rgba(37,99,235,0.12)}
+.loca-footer{margin-top:28px;text-align:center;color:var(--muted);font-size:13px;padding:18px 0}
+
+/* Form styles - improved organization */
+form{max-width:600px;margin:0}
+form label{display:block;font-weight:600;color:#1f2937;margin:18px 0 8px 0;font-size:14px}
+form input,form select,form textarea{width:100%;padding:10px 12px;border:1px solid #d1d5db;border-radius:8px;font-family:inherit;font-size:14px;color:#111827;background:#fff;transition:border-color .2s,box-shadow .2s}
+form input:focus,form select:focus,form textarea:focus{outline:none;border-color:var(--brand-blue);box-shadow:0 0 0 3px rgba(37,99,235,0.1)}
+form input[type="checkbox"]{width:auto;margin-right:8px;cursor:pointer}
+.form-group{margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid #f1f5f9}
+.form-group:last-of-type{border-bottom:none;margin-bottom:28px}
+.form-section{background:#f9fafb;padding:20px;border-radius:10px;margin-bottom:24px;border-left:4px solid var(--brand-blue)}
+.form-section h3{margin:0 0 16px 0;color:#1f2937;font-size:16px;font-weight:700}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-row-full{grid-column:1/-1}
+.form-checkbox-group{display:flex;align-items:center;gap:8px;margin-top:12px}
+.form-checkbox-group label{margin:0;font-weight:500;font-size:14px}
+form button{background:var(--brand-blue);color:#fff;padding:12px 20px;border:none;border-radius:8px;font-weight:600;cursor:pointer;font-size:15px;margin-top:8px;transition:background .2s}
+form button:hover{background:#1d4ed8}
+form button.secondary{background:var(--accent-2);color:#111}
+form button.secondary:hover{background:#ca8a04}
+.form-actions{display:flex;gap:10px;margin-top:24px}
+.form-actions button{margin:0;flex:1}
+
+@media (max-width:720px){
+  .loca-nav{display:none}
+  .nav-toggle{display:block}
+  .form-row{grid-template-columns:1fr}
+}
+@media (min-width:721px){
+  .nav-toggle{display:none}
+}
