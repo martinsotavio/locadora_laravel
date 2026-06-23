@@ -16,6 +16,7 @@
                     <tr>
                         <th>Cliente</th>
                         <th>Funcionário</th>
+                        <th>Carro</th>
                         <th>Período</th>
                         <th>Diárias</th>
                         <th>Valor total</th>
@@ -25,10 +26,12 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {{-- Carregada com eager loading (cliente, funcionario, carro) no controller para evitar consultas N+1. --}}
                     @foreach($locacoes as $locacao)
                         <tr>
                             <td>{{ $locacao->cliente->nome }}<br><small>{{ $locacao->cliente->cpf }}</small></td>
                             <td>{{ $locacao->funcionario->nome }}<br><small>{{ $locacao->funcionario->cpf }}</small></td>
+                            <td>{{ $locacao->carro->placa ?? '—' }}<br><small>{{ $locacao->carro->marca ?? '' }} {{ $locacao->carro->modelo ?? '' }}</small></td>
                             <td>{{ $locacao->data_inicio }} até {{ $locacao->data_fim }}</td>
                             <td>{{ $locacao->dias }}</td>
                             <td>R$ {{ number_format($locacao->valor_total, 2, ',', '.') }}</td>
@@ -47,11 +50,15 @@
 
                     @if($locacoes->isEmpty())
                         <tr>
-                            <td colspan="8" style="text-align: center; color: #6b7280;">Nenhuma locação cadastrada ainda.</td>
+                            <td colspan="9" style="text-align: center; color: #6b7280;">Nenhuma locação cadastrada ainda.</td>
                         </tr>
                     @endif
                 </tbody>
             </table>
+
+            <div style="margin-top:16px;">
+                {{ $locacoes->links() }}
+            </div>
         </div>
     </div>
 @endsection

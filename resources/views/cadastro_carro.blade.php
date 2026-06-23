@@ -12,7 +12,17 @@
             <p class="sucesso">{{ session('sucesso') }}</p>
         @endif
 
-        <form action="{{ route('carros.salvar') }}" method="POST">
+        @if($errors->any())
+            <div class="erros">
+                <ul style="margin: 0; padding-left: 18px;">
+                    @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        <form action="{{ route('carros.salvar') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <div class="form-section">
@@ -56,9 +66,17 @@
                     <input type="number" step="0.01" name="valor_diaria" placeholder="0.00" required> 
                 </div>
 
-                <div class="form-checkbox-group">
-                    <input type="checkbox" name="disponivel" {{ old('disponivel') ? 'checked' : '' }}>
-                    <label>Disponível para aluguel</label>
+                <div class="form-group">
+                    <label>Status:</label>
+                    <select name="status">
+                        <option value="disponivel" {{ old('status') == 'disponivel' ? 'selected' : '' }}>Disponível</option>
+                        <option value="locado" {{ old('status') == 'locado' ? 'selected' : '' }}>Locado</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Foto do Carro:</label>
+                    <input type="file" name="imagem" accept="image/*">
                 </div>
             </div>
 

@@ -19,6 +19,8 @@
                         <th>Telefone</th>
                         <th>E-mail</th>
                         <th>Cargo</th>
+                        <th>Total Comissões</th>
+                        <th>Bonificação</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
@@ -30,6 +32,14 @@
                             <td>{{ $funcionario->telefone ?? 'Não informado' }}</td>
                             <td>{{ $funcionario->email ?? 'Não informado' }}</td>
                             <td>{{ $funcionario->cargo ?? 'Não informado' }}</td>
+                            <td>R$ {{ number_format($funcionario->total_comissao, 2, ',', '.') }}</td>
+                            <td>
+                                @if($funcionario->bonus > 0)
+                                    <span class="badge badge-disponivel">🏆 +R$ {{ number_format($funcionario->bonus, 2, ',', '.') }} ({{ \App\Models\Funcionario::BONUS_PERCENT_TOP_COMISSAO }}%)</span>
+                                @else
+                                    <span class="muted">—</span>
+                                @endif
+                            </td>
                             <td>
                                 @if($funcionario->cargo === 'gerente')
                                     <a href="{{ route('funcionarios.editar', $funcionario->id) }}" class="btn-editar">Editar</a>
@@ -47,11 +57,15 @@
 
                     @if($funcionarios->isEmpty())
                         <tr>
-                            <td colspan="6" style="text-align: center; color: #6b7280;">Nenhum funcionário cadastrado ainda.</td>
+                            <td colspan="8" style="text-align: center; color: #6b7280;">Nenhum funcionário cadastrado ainda.</td>
                         </tr>
                     @endif
                 </tbody>
             </table>
+
+            <div style="margin-top:16px;">
+                {{ $funcionarios->links() }}
+            </div>
         </div>
     </div>
 @endsection

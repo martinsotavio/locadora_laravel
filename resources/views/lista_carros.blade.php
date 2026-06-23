@@ -13,31 +13,47 @@
             </div>
 
             @if(session('sucesso'))
-                <p class="muted"> {{ session('sucesso') }}</p>
+                <p class="sucesso">{{ session('sucesso') }}</p>
+            @endif
+
+            @if(session('erro'))
+                <p class="erro">{{ session('erro') }}</p>
             @endif
 
             <div class="table-wrap">
                 <table>
                     <thead>
                         <tr>
+                            <th>Foto</th>
                             <th>Placa</th>
                             <th>Modelo</th>
                             <th>Marca</th>
                             <th>Ano</th>
                             <th>Valor Diária</th>
-                            <th>Disponível</th>
+                            <th>Status</th>
                             <th style="width:160px">Ações</th>
                         </tr>
                     </thead>
                     <tbody>
                         @forelse($carros as $carro)
                         <tr>
+                            <td>
+                                @if($carro->imagemUrl())
+                                    <img src="{{ $carro->imagemUrl() }}" alt="{{ $carro->placa }}" style="width:64px;height:48px;object-fit:cover;border-radius:6px;">
+                                @else
+                                    <span class="muted">—</span>
+                                @endif
+                            </td>
                             <td class="car-placa">{{ $carro->placa }}</td>
                             <td>{{ $carro->modelo ?? '—' }}</td>
                             <td>{{ $carro->marca ?? '—' }}</td>
                             <td>{{ $carro->ano ?? '—' }}</td>
                             <td>{{ isset($carro->valor_diaria) ? number_format($carro->valor_diaria, 2, ',', '.') : '—' }}</td>
-                            <td>{{ $carro->disponivel ? 'Sim' : 'Não' }}</td>
+                            <td>
+                                <span class="badge {{ $carro->estaDisponivel() ? 'badge-disponivel' : 'badge-locado' }}">
+                                    {{ $carro->estaDisponivel() ? 'Disponível' : 'Locado' }}
+                                </span>
+                            </td>
                             <td>
                                 <div class="flex">
                                     <a href="{{ route('carros.editar', $carro->placa) }}" class="btn secondary">Editar</a>
@@ -51,11 +67,15 @@
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="7" style="text-align:center;color:var(--muted)">Nenhum carro cadastrado ainda.</td>
+                            <td colspan="8" style="text-align:center;color:var(--muted)">Nenhum carro cadastrado ainda.</td>
                         </tr>
                         @endforelse
                     </tbody>
                 </table>
+            </div>
+
+            <div style="margin-top:16px;">
+                {{ $carros->links() }}
             </div>
         </div>
     </div>

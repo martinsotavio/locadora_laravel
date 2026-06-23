@@ -36,7 +36,7 @@ class ClienteController extends Controller
     
     public function listar()
     {
-        $clientes = Cliente::all(); // Pega todos os registros da tabela clientes
+        $clientes = Cliente::orderBy('nome')->paginate(10); // Pagina os registros da tabela clientes
         return view('lista_clientes', compact('clientes'));
     }
 

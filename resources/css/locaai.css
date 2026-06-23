@@ -101,8 +101,10 @@ body{
 /* Form styles - improved organization */
 form{max-width:600px;margin:0}
 form label{display:block;font-weight:600;color:#1f2937;margin:18px 0 8px 0;font-size:14px}
-form input,form select,form textarea{width:100%;padding:10px 12px;border:1px solid #d1d5db;border-radius:8px;font-family:inherit;font-size:14px;color:#111827;background:#fff;transition:border-color .2s,box-shadow .2s}
+form input,form select,form textarea{width:100%;padding:10px 12px;border:1px solid #9ca3af;border-radius:8px;font-family:inherit;font-size:14px;color:#111827;background:#fff;transition:border-color .2s,box-shadow .2s}
 form input:focus,form select:focus,form textarea:focus{outline:none;border-color:var(--brand-blue);box-shadow:0 0 0 3px rgba(37,99,235,0.1)}
+form select{cursor:pointer;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%236b7280'%3E%3Cpath fill-rule='evenodd' d='M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.25a.75.75 0 01-1.06 0L5.23 8.27a.75.75 0 01-.02-1.06z' clip-rule='evenodd'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;background-size:16px;padding-right:36px}
+form select:hover{border-color:var(--brand-blue)}
 form input[type="checkbox"]{width:auto;margin-right:8px;cursor:pointer}
 .form-group{margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid #f1f5f9}
 .form-group:last-of-type{border-bottom:none;margin-bottom:28px}
@@ -127,3 +129,10 @@ form button.secondary:hover{background:#ca8a04}
 @media (min-width:721px){
   .nav-toggle{display:none}
 }
+
+.badge{display:inline-block;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:700}
+.badge-disponivel{background:#dcfce7;color:#15803d}
+.badge-locado{background:#fee2e2;color:#b91c1c}
+
+.sucesso{background:#dcfce7;color:#15803d;padding:10px 14px;border-radius:8px;margin-bottom:16px;border:1px solid #bbf7d0}
+.erro,.erros{background:#fee2e2;color:#b91c1c;padding:10px 14px;border-radius:8px;margin-bottom:16px;border:1px solid #fecaca}

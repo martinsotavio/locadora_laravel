@@ -18,7 +18,7 @@ class CarroSeeder extends Seeder
                 'ano' => 2018,
                 'cor' => 'prata',
                 'valor_diaria' => 120.00,
-                'disponivel' => true,
+                'status' => Carro::STATUS_DISPONIVEL,
             ]
         );
 
@@ -30,7 +30,7 @@ class CarroSeeder extends Seeder
                 'ano' => 2020,
                 'cor' => 'preto',
                 'valor_diaria' => 250.00,
-                'disponivel' => true,
+                'status' => Carro::STATUS_DISPONIVEL,
             ]
         );
 

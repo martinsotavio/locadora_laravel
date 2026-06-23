@@ -45,6 +45,10 @@
                     @endif
                 </tbody>
             </table>
+
+            <div style="margin-top:16px;">
+                {{ $clientes->links() }}
+            </div>
         </div>
     </div>
 @endsection

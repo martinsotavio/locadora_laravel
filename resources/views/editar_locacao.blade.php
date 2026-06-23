@@ -8,6 +8,16 @@
         <section class="card" style="margin-top: 12px; padding: 20px;">
             <h2>Editar Locação</h2>
 
+            @if($errors->any())
+                <div class="erros">
+                    <ul style="margin: 0; padding-left: 18px;">
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
             <form action="{{ route('locacoes.atualizar', $locacao->id) }}" method="POST">
                 @csrf
 
@@ -29,6 +39,25 @@
                             @foreach($funcionarios as $funcionario)
                                 <option value="{{ $funcionario->id }}" {{ $locacao->funcionario_id == $funcionario->id ? 'selected' : '' }}>{{ $funcionario->nome }} ({{ $funcionario->cpf }})</option>
                             @endforeach
+                        </select>
+                    </div>
+
+                    {{-- A lista inclui os carros disponíveis + o carro atual desta locação (ver LocacaoController::editar). --}}
+                    <div class="form-group">
+                        <label>Carro:</label>
+                        <select name="carro_id" required>
+                            @foreach($carros as $carro)
+                                <option value="{{ $carro->placa }}" {{ $locacao->carro_id == $carro->placa ? 'selected' : '' }}>{{ $carro->placa }} — {{ $carro->marca }} {{ $carro->modelo }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    {{-- Mudar para "Finalizada" libera o carro; reativar exige que ele esteja disponível. --}}
+                    <div class="form-group">
+                        <label>Status da Locação:</label>
+                        <select name="status" required>
+                            <option value="ativa" {{ $locacao->status == 'ativa' ? 'selected' : '' }}>Ativa</option>
+                            <option value="finalizada" {{ $locacao->status == 'finalizada' ? 'selected' : '' }}>Finalizada</option>
                         </select>
                     </div>
                 </div>
@@ -59,7 +88,8 @@
                 </div>
             </form>
         </section>
-@endsection
+
+    <script>
         const inicio = document.getElementById('data_inicio');
         const fim = document.getElementById('data_fim');
 

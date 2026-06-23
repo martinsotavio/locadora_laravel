@@ -33,7 +33,28 @@ class FuncionarioController extends Controller
 
     public function listar()
     {
-        $funcionarios = Funcionario::all();
+        // Líder em comissões considerando TODOS os funcionários (não só a página atual).
+        $lider = Funcionario::withSum('comissoes', 'valor')
+            ->orderByDesc('comissoes_sum_valor')
+            ->first();
+
+        if (! $lider || ($lider->comissoes_sum_valor ?? 0) <= 0) {
+            $lider = null;
+        }
+
+        // Ranking por total de comissões, do maior para o menor.
+        $funcionarios = Funcionario::withSum('comissoes', 'valor')
+            ->orderByDesc('comissoes_sum_valor')
+            ->paginate(10);
+
+        foreach ($funcionarios as $funcionario) {
+            $totalComissao = $funcionario->comissoes_sum_valor ?? 0;
+            $funcionario->total_comissao = $totalComissao;
+            $funcionario->bonus = ($lider && $funcionario->id === $lider->id)
+                ? Funcionario::calcularBonus($totalComissao)
+                : 0;
+        }
+
         return view('lista_funcionarios', compact('funcionarios'));
     }
 

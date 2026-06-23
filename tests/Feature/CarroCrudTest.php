@@ -32,7 +32,7 @@ class CarroCrudTest extends TestCase
             'ano' => '2020',
             'cor' => 'Preto',
             'valor_diaria' => '123.45',
-            'disponivel' => 'on',
+            'status' => 'disponivel',
         ]);
 
         $response->assertSessionHas('sucesso');

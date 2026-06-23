@@ -12,7 +12,7 @@
             <div style="color:#ef4444; margin-bottom:10px;">@foreach($errors->all() as $e) <div>{{ $e }}</div> @endforeach</div>
         @endif
 
-        <form action="{{ route('carros.atualizar', $carro->placa) }}" method="POST">
+        <form action="{{ route('carros.atualizar', $carro->placa) }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <div class="form-section">
@@ -56,9 +56,20 @@
                     <input type="number" step="0.01" name="valor_diaria" value="{{ old('valor_diaria', $carro->valor_diaria) }}"> 
                 </div>
 
-                <div class="form-checkbox-group">
-                    <input type="checkbox" name="disponivel" {{ old('disponivel', $carro->disponivel) ? 'checked' : '' }}>
-                    <label>Disponível para aluguel</label>
+                <div class="form-group">
+                    <label>Status:</label>
+                    <select name="status">
+                        <option value="disponivel" {{ old('status', $carro->status) == 'disponivel' ? 'selected' : '' }}>Disponível</option>
+                        <option value="locado" {{ old('status', $carro->status) == 'locado' ? 'selected' : '' }}>Locado</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Foto do Carro:</label>
+                    @if($carro->imagemUrl())
+                        <img src="{{ $carro->imagemUrl() }}" alt="{{ $carro->placa }}" style="max-width:160px;display:block;margin-bottom:10px;border-radius:8px;">
+                    @endif
+                    <input type="file" name="imagem" accept="image/*">
                 </div>
             </div>
 

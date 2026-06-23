@@ -47,11 +47,26 @@
                         @endforeach
                     </select>
                 </div>
+
+                {{-- Só lista carros com status "disponivel" (ver LocacaoController::criar). --}}
+                <div class="form-group">
+                    <label>Carro:</label>
+                    <select name="carro_id" required>
+                        <option value="">Selecione o carro disponível</option>
+                        @foreach($carros as $carro)
+                            <option value="{{ $carro->placa }}">{{ $carro->placa }} — {{ $carro->marca }} {{ $carro->modelo }}</option>
+                        @endforeach
+                    </select>
+                    @if($carros->isEmpty())
+                        <small style="color:#ef4444;">Nenhum carro disponível no momento.</small>
+                    @endif
+                </div>
             </div>
 
+            {{-- dias, valor_total e valor_comissao são calculados no controller a partir destes campos. --}}
             <div class="form-section">
                 <h3>Período e Valor</h3>
-                
+
                 <div class="form-row">
                     <div class="form-group">
                         <label>Data de Início:</label>
