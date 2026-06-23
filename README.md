@@ -32,10 +32,25 @@ locações e acompanhar comissões dos funcionários.
 ```bash
 composer install
 npm install && npm run build
+cp .env.example .env
+php artisan key:generate
+touch database/database.sqlite
 php artisan migrate
-php artisan storage:link   # necessário para as imagens dos carros aparecerem
-php artisan test           # roda a suíte, incluindo os novos testes de Locação
+php artisan db:seed        # cria o usuário admin e dados de exemplo
+php artisan storage:link  # necessário para as imagens dos carros aparecerem
+php artisan test          # roda a suíte, incluindo os novos testes de Locação
+php artisan serve
 ```
+
+## Acesso (login de teste)
+
+| Campo  | Valor                |
+|--------|-----------------------|
+| E-mail | `admin@example.com`  |
+| Senha  | `admin`              |
+
+Esse usuário é criado automaticamente pelo `php artisan db:seed`
+(ver `database/seeders/DatabaseSeeder.php`).
 
 ## Regras de negócio implementadas
 
