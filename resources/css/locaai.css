@@ -138,3 +138,38 @@ form button.secondary:hover{background:#ca8a04}
 
 .sucesso{background:#dcfce7;color:#15803d;padding:10px 14px;border-radius:8px;margin-bottom:16px;border:1px solid #bbf7d0}
 .erro,.erros{background:#fee2e2;color:#b91c1c;padding:10px 14px;border-radius:8px;margin-bottom:16px;border:1px solid #fecaca}
+
+/* Botão de alternar tema (claro/escuro) */
+.theme-toggle{padding:8px 10px;line-height:1;font-size:16px}
+.theme-toggle .theme-icon-dark{display:none}
+:root.dark .theme-toggle .theme-icon-light{display:none}
+:root.dark .theme-toggle .theme-icon-dark{display:inline}
+
+/* Modo escuro: páginas da locadora (clientes, funcionários, carros, locações) */
+:root.dark{
+  --muted:#94a3b8;
+  --card:#1e293b; --card-bg:#1e293b;
+  --page-bg:#0b1120; --brand-dark:#e2e8f0;
+}
+:root.dark body{background:var(--page-bg);color:var(--brand-dark)}
+:root.dark .card{background:var(--card-bg);box-shadow:0 8px 24px rgba(0,0,0,0.45)}
+:root.dark .car-card{background:linear-gradient(180deg,#1e293b,#172033);box-shadow:0 6px 18px rgba(0,0,0,0.4)}
+:root.dark th{background:#0f172a;color:#cbd5e1}
+:root.dark th,:root.dark td{border-bottom:1px solid #334155}
+:root.dark tr:hover td{background:#27344a}
+:root.dark .muted{color:var(--muted)}
+:root.dark .btn.ghost{color:#93c5fd;border-color:rgba(148,163,184,0.35)}
+:root.dark form label{color:#e2e8f0}
+:root.dark form input,:root.dark form select,:root.dark form textarea{background-color:#0f172a;color:#e2e8f0;border-color:#334155;color-scheme:dark}
+:root.dark form select{background-image:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%2394a3b8'%3E%3Cpath fill-rule='evenodd' d='M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.25a.75.75 0 01-1.06 0L5.23 8.27a.75.75 0 01-.02-1.06z' clip-rule='evenodd'/%3E%3C/svg%3E")}
+:root.dark form input:focus,:root.dark form select:focus,:root.dark form textarea:focus{box-shadow:0 0 0 3px rgba(37,99,235,0.25)}
+:root.dark .form-section{background:#16213a;border-left-color:var(--brand-blue)}
+:root.dark .form-section h3{color:#e2e8f0}
+:root.dark .form-group{border-bottom-color:#334155}
+:root.dark .sucesso{background:#14532d;color:#bbf7d0;border-color:#166534}
+:root.dark .erro,:root.dark .erros{background:#7f1d1d;color:#fecaca;border-color:#991b1b}
+:root.dark .badge-disponivel{background:#14532d;color:#bbf7d0}
+:root.dark .badge-locado{background:#7f1d1d;color:#fecaca}
+:root.dark .loca-footer{color:var(--muted)}
+/* Títulos com cor escura fixa via style inline nas views precisam de !important para virar claros */
+:root.dark h2[style*="1f2937"],:root.dark h3[style*="1f2937"]{color:#f1f5f9 !important}

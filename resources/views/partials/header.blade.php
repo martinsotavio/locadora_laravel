@@ -18,6 +18,14 @@
     </nav>
 
     <div class="user-menu">
+        <button
+            type="button"
+            class="btn ghost theme-toggle"
+            title="Alternar tema claro/escuro"
+            aria-label="Alternar tema claro/escuro"
+            onclick="window.Flux.applyAppearance(document.documentElement.classList.contains('dark') ? 'light' : 'dark')"
+        ><span class="theme-icon-light">🌙</span><span class="theme-icon-dark">☀️</span></button>
+
         @auth
             <span class="user-name">{{ auth()->user()->name ?? auth()->user()->email }}</span>
             <form method="POST" action="{{ route('logout') }}" style="display:inline">
